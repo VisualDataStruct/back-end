@@ -34,6 +34,8 @@ class CreateUserTable extends Migration
             'realname' => '管理员',
             'email' => 'admin@VDS.com',
             'contribution' => 0,
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
         ]);
     }
 
