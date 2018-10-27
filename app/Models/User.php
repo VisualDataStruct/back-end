@@ -1,32 +1,71 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Illuminate\Auth\Authenticatable;
-use Laravel\Lumen\Auth\Authorizable;
+use App\Config\PurifierConfig;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use PascalDeVink\ShortUuid\ShortUuid;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract
+/**
+ * Class User
+ * @package App\Models
+ *
+ * @property string $id
+ * @property string $username
+ * @property string $password
+ * @property string $realName
+ * @property string $email
+ * @property string $github
+ * @property string $phone
+ * @property integer $contribution
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ *
+ * @property-read boolean $isAdmin
+ */
+class User extends Model
 {
-    use Authenticatable, Authorizable;
+    protected $table = 'user';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email',
-    ];
+    protected $keyType = 'string';
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-    ];
+    protected $dates = ['created_at', 'updated_at'];
+
+    public $incrementing = false;
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->attributes['id'] = ShortUuid::uuid4();
+    }
+
+    public function setUsernameAttribute($value)
+    {
+        $this->attributes['username'] = clean($value, PurifierConfig::noAutoParagraph());
+    }
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = app('hash')->make($value);
+    }
+    public function setRealNameAttribute($value)
+    {
+        $this->attributes['realName'] = clean($value, PurifierConfig::noAutoParagraph());
+    }
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = clean($value, PurifierConfig::noAutoParagraph());
+    }
+    public function setGithubAttribute($value)
+    {
+        $this->attributes['github'] = clean($value, PurifierConfig::noAutoParagraph());
+    }
+    public function getIsAdminAttribute()
+    {
+        return $this->attributes['id'] === '1';
+    }
+    public function checkPassword($password)
+    {
+        return app('hash')->check($password, $this->password);
+    }
 }
