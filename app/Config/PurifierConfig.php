@@ -14,7 +14,7 @@ class PurifierConfig
     public static function noAutoParagraph()
     {
         return [
-            'AutoFormat.AuthParagraph' => false,
+            'AutoFormat.AutoParagraph' => false,
         ];
     }
 }
