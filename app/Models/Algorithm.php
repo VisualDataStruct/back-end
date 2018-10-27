@@ -39,7 +39,6 @@ class Algorithm extends Model
     {
         parent::__construct($attributes);
         $this->classification_id = 0;
-        $this->attributes['name'] = '';
         $this->CPlusCode = [];
         $this->problems = [];
         $this->attributes['passed'] = 0;
