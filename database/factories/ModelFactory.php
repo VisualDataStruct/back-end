@@ -16,7 +16,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'id' => \PascalDeVink\ShortUuid\ShortUuid::uuid4(),
         'username' => $faker->userName,
         'password' => app('hash')->make(\App\Helper::sha256($faker->password())),
-        'realname' => \App\Helper::generateChinese(),
+        'realName' => \App\Helper::generateChinese(),
         'email' => $faker->email,
         'phone' => $faker->phoneNumber,
         'github' => $faker->userName,
@@ -25,21 +25,21 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 
 $factory->define(\App\Models\Classification::class, function (\Faker\Generator $faker) {
     return [
-        'name' => $faker->words(3),
+        'name' => $faker->words(3, true),
         'description' => $faker->paragraph(),
     ];
 });
 
 $factory->define(\App\Models\Algorithm::class, function (\Faker\Generator $faker) {
     return [
-        'name' => $faker->words(3),
-        'pseudoCode' => [$faker->sentence(), $faker->sentence(), $faker->sentence()],
-        'jsCode' => [$faker->sentence(), $faker->sentence(), $faker->sentence()],
-        'CPlusCode' => [$faker->sentence(), $faker->sentence(), $faker->sentence()],
-        'explain' => [$faker->sentence(), $faker->sentence(), $faker->sentence()],
-        'problem' => [[
-            'name' => $faker->words(5),
+        'name' => $faker->words(3, true),
+        'pseudoCode' => json_encode([$faker->sentence(), $faker->sentence(), $faker->sentence()]),
+        'jsCode' => json_encode([$faker->sentence(), $faker->sentence(), $faker->sentence()]),
+        'CPlusCode' => json_encode([$faker->sentence(), $faker->sentence(), $faker->sentence()]),
+        'explain' => json_encode([$faker->sentence(), $faker->sentence(), $faker->sentence()]),
+        'problems' => json_encode([[
+            'name' => $faker->words(5, true),
             'link' => 'http://www.testOJ.com/' . rand(1, 1000000),
-        ]],
+        ]]),
     ];
 });
