@@ -17,9 +17,9 @@ class CreateAlgorithmTable extends Migration
             $table->increments('id');
             $table->integer('classification_id')->default(0);
             $table->string('name')->unique();
-            $table->text('pseudocode');
+            $table->text('pseudoCode');
             $table->text('CPlusCode')->nullable();
-            $table->text('jscode');
+            $table->text('jsCode');
             $table->text('explain');
             $table->text('problems');
             $table->boolean('passed')->default(0);

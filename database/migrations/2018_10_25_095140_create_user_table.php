@@ -17,7 +17,7 @@ class CreateUserTable extends Migration
             $table->string('id')->unique()->comment('short uuid');
             $table->string('username')->unique();
             $table->string('password');
-            $table->string('realname')->comment('People\'s real name');
+            $table->string('realName')->comment('People\'s real name');
             $table->string('email')->unique();
             $table->string('github')->nullable();
             $table->string('phone')->nullable();
@@ -31,7 +31,7 @@ class CreateUserTable extends Migration
             'id' => '1',
             'username' => 'administrator',
             'password' => \App\Helper::sha256('admin'),
-            'realname' => '管理员',
+            'realName' => '管理员',
             'email' => 'admin@VDS.com',
             'contribution' => 0,
             'created_at' => \Carbon\Carbon::now(),
