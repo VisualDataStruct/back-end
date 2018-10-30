@@ -52,32 +52,32 @@ $router->group([
 
     $router->post('/', 'Add@handle');
 
-    $router->put('/{id}', 'Change@handle');
+    $router->put('/{classification_id}', 'Change@handle');
 
-    $router->delete('/{id}', 'Delete@handle');
+    $router->delete('/{classification_id}', 'Delete@handle');
 
-    $router->post('/{id}', 'Restore@handle');
+    $router->post('/{classification_id}', 'Restore@handle');
 });
 
 $router->group([
-    'prefix' => 'classification/{id}/algorithm',
+    'prefix' => 'classification/{classification_id}/algorithm',
     'namespace' => 'Algorithm',
 ], function () use ($router) {
     $router->get('/', 'List@handle');
 
-    $router->get('/{id}', 'Detail@handle');
+    $router->get('/{algorithm_id}', 'Detail@handle');
 
     $router->post('/', 'Add@handle');
 
-    $router->put('/{id}/verify', 'Verify@handle');
+    $router->put('/{algorithm_id}/verify', 'Verify@handle');
 
-    $router->put('/{id}', 'Change@handle');
+    $router->put('/{algorithm_id}', 'Change@handle');
 
-    $router->delete('/{id}', 'Delete@handle');
+    $router->delete('/{algorithm_id}', 'Delete@handle');
 
-    $router->post('/{id}', 'Restore@handle');
+    $router->post('/{algorithm_id}', 'Restore@handle');
 
-    $router->post('/{id}/problem', 'AddProblem@handle');
+    $router->post('/{algorithm_id}/problem', 'AddProblem@handle');
 
-    $router->delete('/{id}/problem', 'DeleteProblem@handle');
+    $router->delete('/{algorithm_id}/problem', 'DeleteProblem@handle');
 });
