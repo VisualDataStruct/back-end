@@ -33,7 +33,7 @@ class ApiToken extends Model
 
     public function getIsExpiredAttribute()
     {
-        return $this->expired_at->timestamp < Carbon::now()->timestamp;
+        return (!$this->expired_at) || $this->expired_at->timestamp < Carbon::now()->timestamp;
     }
     public function user()
     {
@@ -45,7 +45,7 @@ class ApiToken extends Model
      */
     public function addTime()
     {
-        if ($this->expired_at->timestamp < $this->updated_at->addHour()) {
+        if ($this->expired_at->timestamp < $this->updated_at->addHours(2)->timestamp) {
             $this->expired_at = Carbon::now()->addHour();
         } else {
             $this->expired_at = Carbon::now()->addMonth();
