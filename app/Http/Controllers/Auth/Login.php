@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class Login extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory
+     */
     public function handle(Request $request)
     {
         $this->validate($request, [
