@@ -24,7 +24,7 @@ $router->group([
 ], function () use ($router) {
     $router->post('/login', 'Login@handle');
 
-    $router->put('/security/{id}', 'ChangePassword@handle');
+    $router->put('/{id}/security', 'ChangePassword@handle');
 
     $router->post('/forget', 'ForgetPassword@handle');
 
