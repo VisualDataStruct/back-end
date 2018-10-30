@@ -4,8 +4,8 @@ namespace App\Models;
 
 use App\Config\PurifierConfig;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use PascalDeVink\ShortUuid\ShortUuid;
+use App\Models\BaseModel as Model;
 
 /**
  * Class User

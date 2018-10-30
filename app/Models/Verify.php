@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Config\PurifierConfig;
 use App\Helper;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel as Model;
 
 /**
  * Class Verify
