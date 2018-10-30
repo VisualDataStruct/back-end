@@ -23,6 +23,7 @@ use App\Models\BaseModel as Model;
  * @property Carbon $updated_at
  *
  * @property-read boolean $isAdmin
+ * @property-read ApiToken[] $apiTokens
  */
 class User extends Model
 {
@@ -64,6 +65,14 @@ class User extends Model
     {
         return $this->attributes['id'] === '1';
     }
+    public function apiTokens()
+    {
+        return $this->hasMany('\App\Models\ApiToken', 'user_id', 'id');
+    }
+    /**
+     * @param $password
+     * @return boolean
+     */
     public function checkPassword($password)
     {
         return app('hash')->check($password, $this->password);
