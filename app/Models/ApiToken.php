@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use App\Models\BaseModel as Model;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Class ApiToken
@@ -27,6 +28,7 @@ class ApiToken extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
+        $this->token = Uuid::uuid4();
     }
 
     public function getIsExpiredAttribute()
@@ -49,6 +51,21 @@ class ApiToken extends Model
             $this->expired_at = Carbon::now()->addMonth();
         }
         $this->save();
+        return;
+    }
+
+    /**
+     * @param bool $remember
+     *
+     * @return null
+     */
+    public function setExpiredTime(bool $remember)
+    {
+        if ($remember === true) {
+            $this->expired_at = Carbon::now()->addMonth();
+        } else {
+            $this->expired_at = Carbon::now()->addHour();
+        }
         return;
     }
 }
