@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  *
- * @method static \Illuminate\Database\Eloquent\Builder|static where($col, $eq, $value)
+ * @method static \Illuminate\Database\Eloquent\Builder|static where($col, $eq='=', $value='')
+ * @method static static find($id)
  */
 class BaseModel extends Model
 {
