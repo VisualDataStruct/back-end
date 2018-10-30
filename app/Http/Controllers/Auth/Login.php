@@ -31,7 +31,7 @@ class Login extends Controller
         }
         $api_token = new ApiToken();
         $api_token->setExpiredTime($request->input('remember', false));
-        $api_token->save();
+        $user->apiTokens()->save($api_token);
         return response([
             'token' => $api_token->token,
         ]);
