@@ -30,7 +30,7 @@ class CreateUserTable extends Migration
         \Illuminate\Support\Facades\DB::table('user')->insert([
             'id' => '1',
             'username' => 'administrator',
-            'password' => \App\Helper::sha256('admin'),
+            'password' => app('hash')->make(\App\Helper::sha256('admin')),
             'realName' => '管理员',
             'email' => 'admin@VDS.com',
             'contribution' => 0,
