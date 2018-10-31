@@ -23,7 +23,7 @@ use App\Models\BaseModel as Model;
  */
 class Verify extends Model
 {
-    protected $table = 'api_token';
+    protected $table = 'verify';
 
     protected $dates = ['created_at', 'updated_at', 'expired_at'];
 
