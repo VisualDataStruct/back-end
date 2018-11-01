@@ -46,4 +46,20 @@ class Verify extends Model
     {
         return $this->belongsTo('App\Models\User', 'email', 'email');
     }
+
+    /**
+     * @return bool
+     */
+    public function noLongerThenOneMinute()
+    {
+        return $this->created_at->addMinute()->timestamp > Carbon::now()->timestamp;
+    }
+
+    /**
+     * @return integer
+     */
+    public function secondToOneMinute()
+    {
+        return $this->created_at->addMinute()->timestamp - Carbon::now()->timestamp;
+    }
 }
