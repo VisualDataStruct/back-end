@@ -15,6 +15,7 @@
  * @var $router \Laravel\Lumen\Routing\Router
  */
 $router->get('/', function () use ($router) {
+    return env('MAIL_DRIVER');
     return $router->app->version();
 });
 
