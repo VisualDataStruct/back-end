@@ -82,7 +82,10 @@ $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(Mews\Purifier\PurifierServiceProvider::class);
 $app->register(Overtrue\LaravelLang\TranslationServiceProvider::class);
+$app->register(Illuminate\Mail\MailServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+
+$app->configure('mail');
 
 /*
 |--------------------------------------------------------------------------
