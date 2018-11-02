@@ -62,4 +62,13 @@ class Verify extends Model
     {
         return $this->created_at->addMinute()->timestamp - Carbon::now()->timestamp;
     }
+
+    /**
+     * @param string $verify
+     * @return bool
+     */
+    public function checkVerify(string $verify)
+    {
+        return $this->verify_code === $verify;
+    }
 }
