@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @method static \Illuminate\Database\Eloquent\Builder|static where($col, $eq='=', $value='')
  * @method static static find($id)
+ * @method static static first()
  */
 class BaseModel extends Model
 {
