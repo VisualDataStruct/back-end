@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Verify;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
@@ -20,6 +21,10 @@ class ForgetPassword extends Controller
             'email' => 'required|email',
         ]);
         $email = $request->input('email');
+        $user = User::where('email', '=', $email)->first();
+        if ($user === null) {
+            return parent::error(404, '该邮箱未注册');
+        }
         $lastlyVerify = Verify::where('email', '=', $email)->latest('expired_at')->first();
         if ($lastlyVerify->noLongerThenOneMinute()) {
             return parent::error(429, '请在' . $lastlyVerify->secondToOneMinute() . '秒后重试');
