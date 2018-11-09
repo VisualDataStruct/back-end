@@ -2,13 +2,12 @@ language: php
 
 php:
   - 7.1
-  - nightly
 
 servive:
   - mysql
 
 before_script:
-  - pecl install memcached
+  - pecl install memcached --disable-memcached-sasl
   - mysql -e "create database VDS"
   - composer install
   - php artisan migrate
