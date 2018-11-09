@@ -4,8 +4,13 @@ namespace App\Models;
 
 use App\Config\PurifierConfig;
 use Carbon\Carbon;
+use Illuminate\Auth\Authenticatable;
+use Laravel\Lumen\Auth\Authorizable;
 use PascalDeVink\ShortUuid\ShortUuid;
 use App\Models\BaseModel as Model;
+
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
 /**
  * Class User
@@ -25,8 +30,10 @@ use App\Models\BaseModel as Model;
  * @property-read boolean $isAdmin
  * @property-read ApiToken[] $apiTokens
  */
-class User extends Model
+class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
+    use Authenticatable, Authorizable;
+
     protected $table = 'user';
 
     protected $keyType = 'string';
