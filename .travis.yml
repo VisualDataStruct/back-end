@@ -4,6 +4,5 @@ php:
   - 7.1
   - nightly
 
-install:
-  - composer install --prefer-dist --optimize-autoloader --quiet
-  - cp .env.example .env
+before_script:
+  - composer install
