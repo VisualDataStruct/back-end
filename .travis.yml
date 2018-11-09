@@ -12,4 +12,5 @@ before_script:
 #  - sudo apt install php7-memcached
   - mysql -e "create database VDS"
   - composer install
-  - php artisan migrate
+  - cp .env.example .env
+  - php artisan migrate --seed
