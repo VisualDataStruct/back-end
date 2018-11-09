@@ -33,6 +33,23 @@ class LoginTest extends TestCase
             ]
         );
     }
+    public function testLoginSuccessWithRemember()
+    {
+        $response = $this->call('POST', '/auth/login', [
+            'email' => 'admin@VDS.com',
+            'password' => \App\Helper::sha256('admin'),
+            'remember' => true,
+        ]);
+        $this->assertResponseOk();
+        $this->seeInDatabase('api_token',
+            [
+                'user_id' => '1',
+                'token' => $response->original['token'],
+            ]
+        );
+        $api_token = \App\Models\ApiToken::where('token', '=', $response->original['token'])->first();
+        $this->assertTrue($api_token->expired_at->timestamp > \Carbon\Carbon::now()->addDays(20)->timestamp);
+    }
     public function testLoginFailWithoutEmailNorUsername()
     {
         $response = $this->call('POST', '/auth/login', [
