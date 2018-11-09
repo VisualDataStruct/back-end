@@ -29,8 +29,11 @@ class ResetPassword extends Controller
         if ($verify === null) {
             return parent::error(404, '该邮箱未生成验证码');
         }
-        if (!$verify->checkVerify($request->input('verify'))) {
+        if (!$verify->checkVerify($request->input('verify')) || $verify->user->id !== $user->id) {
             return parent::error(401, '验证码错误');
+        }
+        if ($verify->isExpired) {
+            return parent::error(401, '验证码过期');
         }
         $user->password = $request->input('new_password');
         $user->save();
