@@ -7,7 +7,15 @@ servive:
   - mysql
 
 before_script:
+  - travis_retry composer self-update
+  - travis_retry composer install --no-interaction --prefer-source --dev
   - mysql -e "create database VDS"
   - composer install
   - cp .env.example .env
   - php artisan migrate --seed
+
+script:
+    - vendor/bin/phpunit --coverage-clover=coverage.xml
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash) -t 282b5d8f-be56-477d-a27f-07de11de4833
