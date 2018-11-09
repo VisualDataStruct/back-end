@@ -3,7 +3,7 @@
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
-class ForgetPassword extends TestCase
+class ForgetPasswordTest extends TestCase
 {
     public function testForgetPasswordSuccess()
     {
