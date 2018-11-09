@@ -14,11 +14,11 @@ class CreateUserTable extends Migration
     public function up()
     {
         Schema::create('user', function (Blueprint $table) {
-            $table->string('id', '120')->unique()->comment('short uuid');
-            $table->string('username')->unique();
+            $table->string('id', 120)->unique()->comment('short uuid');
+            $table->string('username', 120)->unique();
             $table->string('password');
             $table->string('realName')->comment('People\'s real name');
-            $table->string('email', '120')->unique();
+            $table->string('email', 120)->unique();
             $table->string('github')->nullable();
             $table->string('phone')->nullable();
             $table->integer('contribution')->default(0);
