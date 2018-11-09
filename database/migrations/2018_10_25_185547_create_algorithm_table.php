@@ -16,7 +16,7 @@ class CreateAlgorithmTable extends Migration
         Schema::create('algorithm', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('classification_id')->default(0);
-            $table->string('name')->unique();
+            $table->string('name', '120')->unique();
             $table->text('pseudoCode');
             $table->text('CPlusCode')->nullable();
             $table->text('jsCode');

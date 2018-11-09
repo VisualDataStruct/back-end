@@ -15,7 +15,7 @@ class CreateClassificationTable extends Migration
     {
         Schema::create('classification', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name', '120')->unique();
             $table->string('description')->nullable();
             $table->integer('sum')->default(0);
 
