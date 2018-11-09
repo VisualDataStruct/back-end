@@ -9,7 +9,7 @@ servive:
 before_script:
 #  - pecl install memcached --disable-memcached-sasl
 #  - echo "extension=<extension>.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - sudo yum install php-memcached
+  - sudo apt install php-memcached
   - mysql -e "create database VDS"
   - composer install
   - php artisan migrate
