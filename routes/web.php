@@ -22,6 +22,8 @@ $router->group([
     'prefix' => 'auth',
     'namespace' => 'Auth'
 ], function () use ($router) {
+    $router->get('/', 'GetAuth@handle');
+
     $router->post('/login', 'Login@handle');
 
     $router->put('/security', 'ChangePassword@handle');
@@ -37,7 +39,7 @@ $router->group([
 ], function () use ($router) {
     $router->post('/add', 'Add@handle');
 
-    $router->get('/', 'getList@handle');
+    $router->get('/', 'GetList@handle');
 
     $router->get('/{user_id}', 'Detail@handle');
 
