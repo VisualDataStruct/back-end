@@ -105,8 +105,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
                 $data['realName'] = $this->realName;
                 $data['phone'] = $this->phone;
                 break;
-            default:
-                break;
         }
         return $data;
     }
