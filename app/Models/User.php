@@ -84,4 +84,24 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return app('hash')->check($password, $this->password);
     }
+
+    /**
+     * @param string $type
+     * @return array
+     */
+    public function getData(string $type)
+    {
+        $data = [
+            'id' => $this->id,
+            'username' => $this->username,
+            'email' => $this->email,
+            'github' => $this->github,
+            'contribution' => $this->contribution,
+        ];
+        switch ($type) {
+            case 'list':
+                break;
+        }
+        return $data;
+    }
 }
