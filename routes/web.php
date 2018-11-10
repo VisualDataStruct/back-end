@@ -50,7 +50,7 @@ $router->group([
     'prefix' => 'classification',
     'namespace' => 'Classification',
 ], function () use ($router) {
-    $router->get('/', 'List@handle');
+    $router->get('/', 'GetList@handle');
 
     $router->post('/', 'Add@handle');
 
@@ -65,7 +65,7 @@ $router->group([
     'prefix' => 'classification/{classification_id}/algorithm',
     'namespace' => 'Algorithm',
 ], function () use ($router) {
-    $router->get('/', 'List@handle');
+    $router->get('/', 'GetList@handle');
 
     $router->get('/{algorithm_id}', 'Detail@handle');
 
