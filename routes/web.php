@@ -37,7 +37,7 @@ $router->group([
 ], function () use ($router) {
     $router->post('/add', 'Add@handle');
 
-    $router->get('/', 'List@handle');
+    $router->get('/', 'getList@handle');
 
     $router->get('/{user_id}', 'Detail@handle');
 
