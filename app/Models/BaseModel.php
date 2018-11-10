@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|static offset(integer $val)
  * @method static \Illuminate\Database\Eloquent\Builder|static limit(integer $val)
  * @method static \Illuminate\Database\Eloquent\Builder|static query()
+ * @method static \Illuminate\Database\Eloquent\Builder|static withTrashed()
  * @method static static find($id)
  * @method static static first()
  */
