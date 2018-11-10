@@ -64,4 +64,13 @@ class Helper
         }
         return $code;
     }
+    public static function generatePassword(int $len = 8, string $charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    {
+        $charset = Helper::stringToArray($charset);
+        $password = '';
+        for ($i = 0; $i < $len; ++$i) {
+            $password .= $charset[array_rand($charset)];
+        }
+        return $password;
+    }
 }
