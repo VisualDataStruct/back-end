@@ -48,4 +48,30 @@ class Classification extends Model
     {
         return $this->hasMany('App\Models\Algorithm', 'classification_id', 'id');
     }
+
+    /**
+     * @param string $type
+     * @return array
+     */
+    public function getData(string $type)
+    {
+        $data = [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'sum' => $this->sum,
+            'deleted_at' => $this->deleted_at->timestamp ?? null,
+        ];
+        switch ($type) {
+            case 'list':
+                break;
+            case 'detail':
+                $data['algorithm'] = [];
+                foreach ($this->algorithms as $algorithm) {
+                    $data['algorithm'][] = [];
+                }
+                break;
+        }
+        return $data;
+    }
 }
