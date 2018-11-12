@@ -28,7 +28,8 @@ class RestoreClassificationTest extends TestCase
     }
     public function testDeleteClassificationFailWithNoLogin()
     {
-        $classification = \App\Models\Classification::onlyTrashed()->first();
+        $classification = \App\Models\Classification::withTrashed()->first();
+
         $response = $this->call('POST',  '/classification/' . $classification->id);
         $this->assertEquals(401, $response->status());
     }
