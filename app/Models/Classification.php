@@ -77,7 +77,7 @@ class Classification extends Model
                     if (!$login && !$algorithm->isPassed) {
                         continue;
                     }
-                    $data['algorithm'][] = $algorithm->getData('list');
+                    $data['algorithms'][] = $algorithm->getData('list');
                 }
                 break;
         }
