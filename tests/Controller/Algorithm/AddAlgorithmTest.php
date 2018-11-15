@@ -106,4 +106,48 @@ class AddAlgorithmTest extends TestCase
             '/classification/0/algorithm', $new_algorithm);
         $this->assertEquals(404, $response->status());
     }
+    public function testAddAlgorithmWithErrorForm()
+    {
+        $user = \App\Models\User::first();
+        $classification = \App\Models\Classification::withTrashed()->first();
+        $new_algorithm = [
+            'name' => 'test',
+        ];
+        $response = $this->actingAs($user)->call('POST',
+            '/classification/' . $classification->id . '/algorithm', $new_algorithm);
+        $this->assertEquals(422, $response->status());
+    }
+    public function testAddAlgorithmWithSameName()
+    {
+        $user = \App\Models\User::first();
+        $classification = \App\Models\Classification::withTrashed()->first();
+        $algorithm = \App\Models\Algorithm::withTrashed()->first();
+        $new_algorithm = [
+            'name' => $algorithm->name,
+            'classification_id' => 0,
+            'pseudoCode' => [
+                '伪代码 1',
+                '伪代码 2',
+                '伪代码 3',
+            ],
+            'jsCode' => [
+                'js code 1',
+                'js code 2',
+                'js code 3',
+            ],
+            'explain' => [
+                'explain 1',
+                'explain 2',
+                'explain 3',
+            ],
+            'CPlusCode' => [
+                'c++ code 1',
+                'c++ code 2',
+                'c++ code 3',
+            ],
+        ];
+        $response = $this->actingAs($user)->call('POST',
+            '/classification/' . $classification->id . '/algorithm', $new_algorithm);
+        $this->assertEquals(422, $response->status());
+    }
 }
