@@ -31,10 +31,10 @@ class Change extends Controller
             return parent::error(404, 'Algorithm Not Found');
         }
         $this->validate($request, [
-            'name' => 'required|string|unique:algorithm,name',
-            'pseudoCode' => 'required|array',
-            'jsCode' => 'required|array',
-            'explain' => 'required|array',
+            'name' => 'nullable|string|unique:algorithm,name',
+            'pseudoCode' => 'nullable|array',
+            'jsCode' => 'nullable|array',
+            'explain' => 'nullable|array',
             'CPlusCode' => 'nullable|array',
         ]);
         $algorithm->name = $request->input('name', $algorithm->name);
