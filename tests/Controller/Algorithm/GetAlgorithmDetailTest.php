@@ -11,6 +11,8 @@ class GetAlgorithmDetailTest extends TestCase
         $algorithm = $classification->algorithms()->first();
         $algorithm->pass();
         $algorithm->save();
+        $classification->getSum();
+        $classification->save();
         $response = $this->call('GET', '/classification/' . $classification->id . '/algorithm/' . $algorithm->id);
         $this->assertResponseOk();
         $this->assertEquals($algorithm->getData('detail'), $response->original);
