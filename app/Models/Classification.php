@@ -51,9 +51,10 @@ class Classification extends Model
 
     /**
      * @param string $type
+     * @param boolean $login
      * @return array
      */
-    public function getData(string $type)
+    public function getData(string $type, bool $login = false)
     {
         $data = [
             'id' => $this->id,
@@ -67,11 +68,24 @@ class Classification extends Model
                 break;
             case 'detail':
                 $data['algorithm'] = [];
-                foreach ($this->algorithms as $algorithm) {
-                    $data['algorithm'][] = [];
+                if ($login) {
+                    $algorithms = $this->algorithms()->withTrashed()->get();
+                } else {
+                    $algorithms = $this->algorithms;
+                }
+                foreach ($algorithms as $algorithm) {
+                    if (!$login && !$algorithm->isPassed) {
+                        continue;
+                    }
+                    $data['algorithm'][] = $algorithm->getData('list');
                 }
                 break;
         }
         return $data;
+    }
+    public function getSum()
+    {
+        $this->sum = $this->algorithms()->where('passed', 1)->count();
+        return $this->sum;
     }
 }
