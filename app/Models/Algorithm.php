@@ -20,6 +20,7 @@ use App\Models\BaseModel as Model;
  * @property array $explain
  * @property array $problems
  * @property boolean $passed
+ * @property boolean $isPassed
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
@@ -107,6 +108,10 @@ class Algorithm extends Model
             return [$this->attributes['problems']];
         }
     }
+    public function getIsPassedAttribute()
+    {
+        return $this->passed === 1;
+    }
     public function classification()
     {
         return $this->belongsTo('App\Models\Classification', 'classification_id', 'id');
@@ -127,6 +132,24 @@ class Algorithm extends Model
         $this->problems = $problems;
         return;
     }
+    public function deleteProblem(string $name, string $link = '')
+    {
+        $problems = $this->problems;
+        foreach ($problems as $key => $problem) {
+            if ($link === '') {
+                if ($problem->name === $name) {
+                    unset($problems[$key]);
+                }
+            } else {
+                if ($problem->name === $name && $problem->link === $link) {
+                    unset($problems[$key]);
+                }
+            }
+        }
+        $problems = array_values($problems);
+        $this->problems = $problems;
+        return;
+    }
 
     /**
      * @return null
@@ -135,5 +158,31 @@ class Algorithm extends Model
     {
         $this->attributes['passed'] = 1;
         return;
+    }
+
+    /**
+     * @param string $type
+     * @return array
+     */
+    public function getData(string $type)
+    {
+        $data = [
+            'id' => $this->id,
+            'classification_id' => $this->classification_id,
+            'name' => $this->name,
+            'deleted_at' => $this->deleted_at->timestamp ?? null,
+        ];
+        switch ($type) {
+            case 'list':
+                break;
+            case 'detail':
+                $data['pseudoCode'] = $this->pseudoCode;
+                $data['CPlusCode'] = $this->CPlusCode;
+                $data['jsCode'] = $this->jsCode;
+                $data['explain'] = $this->explain;
+                $data['problem'] = $this->problems;
+                break;
+        }
+        return $data;
     }
 }
