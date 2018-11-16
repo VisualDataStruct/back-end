@@ -54,11 +54,7 @@ class Algorithm extends Model
     }
     public function getPseudoCodeAttribute()
     {
-        try {
-            return json_decode($this->attributes['pseudoCode']);
-        } catch (\Throwable $exception) {
-            return [$this->attributes['pseudoCode']];
-        }
+        return json_decode($this->attributes['pseudoCode']) ?? [$this->attributes['pseudoCode']];
     }
     public function setCPlusCodeAttribute($value)
     {
@@ -66,11 +62,7 @@ class Algorithm extends Model
     }
     public function getCPlusCodeAttribute()
     {
-        try {
-            return json_decode($this->attributes['CPlusCode']);
-        } catch (\Throwable $exception) {
-            return [$this->attributes['CPlusCode']];
-        }
+        return json_decode($this->attributes['CPlusCode']) ?? [$this->attributes['CPlusCode']];
     }
     public function setJsCodeAttribute($value)
     {
@@ -78,11 +70,7 @@ class Algorithm extends Model
     }
     public function getJsCodeAttribute()
     {
-        try {
-            return json_decode($this->attributes['jsCode']);
-        } catch (\Throwable $exception) {
-            return [$this->attributes['jsCode']];
-        }
+        return json_decode($this->attributes['jsCode']) ?? [$this->attributes['jsCode']];
     }
     public function setExplainAttribute($value)
     {
@@ -90,11 +78,7 @@ class Algorithm extends Model
     }
     public function getExplainAttribute()
     {
-        try {
-            return json_decode($this->attributes['explain']);
-        } catch (\Throwable $exception) {
-            return [$this->attributes['explain']];
-        }
+        return json_decode($this->attributes['explain']) ?? [$this->attributes['explain']];
     }
     public function setProblemsAttribute($value)
     {
@@ -102,11 +86,7 @@ class Algorithm extends Model
     }
     public function getProblemsAttribute()
     {
-        try {
-            return json_decode($this->attributes['problems']);
-        } catch (\Throwable $exception) {
-            return [$this->attributes['problems']];
-        }
+        return json_decode($this->attributes['problems']) ?? [$this->attributes['problems']];
     }
     public function getIsPassedAttribute()
     {
