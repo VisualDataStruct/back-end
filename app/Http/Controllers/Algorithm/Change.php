@@ -32,15 +32,13 @@ class Change extends Controller
         }
         $this->validate($request, [
             'name' => 'nullable|string|unique:algorithm,name',
-            'pseudoCode' => 'nullable|array',
-            'jsCode' => 'nullable|array',
-            'explain' => 'nullable|array',
+            'blocksXml' => 'nullable|string',
+            'blocksJson' => 'nullable|string',
             'CPlusCode' => 'nullable|array',
         ]);
         $algorithm->name = $request->input('name', $algorithm->name);
-        $algorithm->pseudoCode = $request->input('pseudoCode', $algorithm->pseudoCode);
-        $algorithm->jsCode = $request->input('jsCode', $algorithm->jsCode);
-        $algorithm->explain = $request->input('explain', $algorithm->explain);
+        $algorithm->blocksJson = $request->input('blocksJson', $algorithm->blocksJson);
+        $algorithm->blocksXml= $request->input('blocksXml', $algorithm->blocksXml);
         $algorithm->CPlusCode = $request->input('CPlusCode', $algorithm->CPlusCode);
         $algorithm->save();
         return response('');

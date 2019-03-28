@@ -19,9 +19,8 @@ class VerifyAlgorithmTest extends TestCase
             'passed' => 1,
             'name' => $algorithm->name,
             'classification_id' => $classification->id,
-            'jsCode' => json_encode($algorithm->jsCode),
-            'pseudoCode' => json_encode($algorithm->pseudoCode),
-            'explain' => json_encode($algorithm->explain),
+            'blocksJson' => $algorithm->blocksJson,
+            'blocksXml' => $algorithm->blocksXml,
             'CPlusCode' => json_encode($algorithm->CPlusCode),
         ]);
     }

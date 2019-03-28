@@ -13,21 +13,8 @@ class ChangeAlgorithmTest extends TestCase
         $new_algorithm = [
             'name' => 'new algorithm' . rand(0, 1000000),
             'classification_id' => $classification->id,
-            'pseudoCode' => [
-                '伪代码 ' . rand(0, 1000000),
-                '伪代码 ' . rand(0, 1000000),
-                '伪代码 ' . rand(0, 1000000),
-            ],
-            'jsCode' => [
-                'js code ' . rand(0, 1000000),
-                'js code ' . rand(0, 1000000),
-                'js code ' . rand(0, 1000000),
-            ],
-            'explain' => [
-                'explain ' . rand(0, 1000000),
-                'explain ' . rand(0, 1000000),
-                'explain ' . rand(0, 1000000),
-            ],
+            'blocksXml' => '<xml xmlns="http://www.w3.org/1999/xhtml"><variables><variable type="" id="6|^2K*0cdi1H!-+VS)(*">1</variable></variables><block type="variables_get" id=";pM4/qqG77O=S#^c(,]J" x="80" y="10"><field name="VAR" id="6|^2K*0cdi1H!-+VS)(*" variabletype="">1</field></block></xml>',
+            'blocksJson' => '{"code":[{"block":"VAR_GET","var_name":"my_1","comment":"","comment_id":"1"}],"_var":{"my_1":0},"_sp_var":{}}',
             'CPlusCode' => [
                 'c++ code ' . rand(0, 1000000),
                 'c++ code ' . rand(0, 1000000),
@@ -37,9 +24,6 @@ class ChangeAlgorithmTest extends TestCase
         $this->actingAs($user)->call('PUT',
             '/classification/' . $classification->id . '/algorithm/' . $algorithm->id, $new_algorithm);
         $this->assertResponseOk();
-        $new_algorithm['pseudoCode'] = json_encode($new_algorithm['pseudoCode']);
-        $new_algorithm['jsCode'] = json_encode($new_algorithm['jsCode']);
-        $new_algorithm['explain'] = json_encode($new_algorithm['explain']);
         $new_algorithm['CPlusCode'] = json_encode($new_algorithm['CPlusCode']);
         $new_algorithm['id'] = $algorithm->id;
         $new_algorithm['passed'] = $algorithm->passed;

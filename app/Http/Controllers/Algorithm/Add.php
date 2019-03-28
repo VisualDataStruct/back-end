@@ -27,16 +27,14 @@ class Add extends Controller
         }
         $this->validate($request, [
             'name' => 'required|string|unique:algorithm,name',
-            'pseudoCode' => 'required|array',
-            'jsCode' => 'required|array',
-            'explain' => 'required|array',
+            'blocksXml' => 'required|string',
+            'blocksJson' => 'required|string',
             'CPlusCode' => 'nullable|array',
         ]);
         $algorithm = new Algorithm();
         $algorithm->name = $request->input('name');
-        $algorithm->pseudoCode = $request->input('pseudoCode');
-        $algorithm->jsCode = $request->input('jsCode');
-        $algorithm->explain = $request->input('explain');
+        $algorithm->blocksXml = $request->input('blocksXml');
+        $algorithm->blocksJson = $request->input('blocksJson');
         $algorithm->CPlusCode = $request->input('CPlusCode', []);
         $classification->algorithms()->save($algorithm);
         return response([

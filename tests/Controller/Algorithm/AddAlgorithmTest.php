@@ -12,21 +12,8 @@ class AddAlgorithmTest extends TestCase
         $new_algorithm = [
             'name' => 'new algorithm' . rand(0, 1000000),
             'classification_id' => $classification->id,
-            'pseudoCode' => [
-                '伪代码 1',
-                '伪代码 2',
-                '伪代码 3',
-            ],
-            'jsCode' => [
-                'js code 1',
-                'js code 2',
-                'js code 3',
-            ],
-            'explain' => [
-                'explain 1',
-                'explain 2',
-                'explain 3',
-            ],
+            'blocksXml' => '<xml xmlns="http://www.w3.org/1999/xhtml"><variables><variable type="" id="6|^2K*0cdi1H!-+VS)(*">1</variable></variables><block type="variables_get" id=";pM4/qqG77O=S#^c(,]J" x="80" y="10"><field name="VAR" id="6|^2K*0cdi1H!-+VS)(*" variabletype="">1</field></block></xml>',
+            'blocksJson' => '{"code":[{"block":"VAR_GET","var_name":"my_1","comment":"","comment_id":"1"}],"_var":{"my_1":0},"_sp_var":{}}',
             'CPlusCode' => [
                 'c++ code 1',
                 'c++ code 2',
@@ -36,9 +23,6 @@ class AddAlgorithmTest extends TestCase
         $response = $this->actingAs($user)->call('POST',
             '/classification/' . $classification->id . '/algorithm', $new_algorithm);
         $this->assertResponseOk();
-        $new_algorithm['pseudoCode'] = json_encode($new_algorithm['pseudoCode']);
-        $new_algorithm['jsCode'] = json_encode($new_algorithm['jsCode']);
-        $new_algorithm['explain'] = json_encode($new_algorithm['explain']);
         $new_algorithm['CPlusCode'] = json_encode($new_algorithm['CPlusCode']);
         $new_algorithm['id'] = $response->original['id'];
         $new_algorithm['passed'] = 0;
@@ -50,21 +34,8 @@ class AddAlgorithmTest extends TestCase
         $new_algorithm = [
             'name' => 'new algorithm' . rand(0, 1000000),
             'classification_id' => $classification->id,
-            'pseudoCode' => [
-                '伪代码 1',
-                '伪代码 2',
-                '伪代码 3',
-            ],
-            'jsCode' => [
-                'js code 1',
-                'js code 2',
-                'js code 3',
-            ],
-            'explain' => [
-                'explain 1',
-                'explain 2',
-                'explain 3',
-            ],
+            'blocksXml' => '<xml xmlns="http://www.w3.org/1999/xhtml"><variables><variable type="" id="6|^2K*0cdi1H!-+VS)(*">1</variable></variables><block type="variables_get" id=";pM4/qqG77O=S#^c(,]J" x="80" y="10"><field name="VAR" id="6|^2K*0cdi1H!-+VS)(*" variabletype="">1</field></block></xml>',
+            'blocksJson' => '{"code":[{"block":"VAR_GET","var_name":"my_1","comment":"","comment_id":"1"}],"_var":{"my_1":0},"_sp_var":{}}',
             'CPlusCode' => [
                 'c++ code 1',
                 'c++ code 2',
@@ -81,21 +52,8 @@ class AddAlgorithmTest extends TestCase
         $new_algorithm = [
             'name' => 'new algorithm' . rand(0, 1000000),
             'classification_id' => 0,
-            'pseudoCode' => [
-                '伪代码 1',
-                '伪代码 2',
-                '伪代码 3',
-            ],
-            'jsCode' => [
-                'js code 1',
-                'js code 2',
-                'js code 3',
-            ],
-            'explain' => [
-                'explain 1',
-                'explain 2',
-                'explain 3',
-            ],
+            'blocksXml' => '<xml xmlns="http://www.w3.org/1999/xhtml"><variables><variable type="" id="6|^2K*0cdi1H!-+VS)(*">1</variable></variables><block type="variables_get" id=";pM4/qqG77O=S#^c(,]J" x="80" y="10"><field name="VAR" id="6|^2K*0cdi1H!-+VS)(*" variabletype="">1</field></block></xml>',
+            'blocksJson' => '{"code":[{"block":"VAR_GET","var_name":"my_1","comment":"","comment_id":"1"}],"_var":{"my_1":0},"_sp_var":{}}',
             'CPlusCode' => [
                 'c++ code 1',
                 'c++ code 2',
@@ -125,21 +83,8 @@ class AddAlgorithmTest extends TestCase
         $new_algorithm = [
             'name' => $algorithm->name,
             'classification_id' => 0,
-            'pseudoCode' => [
-                '伪代码 1',
-                '伪代码 2',
-                '伪代码 3',
-            ],
-            'jsCode' => [
-                'js code 1',
-                'js code 2',
-                'js code 3',
-            ],
-            'explain' => [
-                'explain 1',
-                'explain 2',
-                'explain 3',
-            ],
+            'blocksXml' => '<xml xmlns="http://www.w3.org/1999/xhtml"><variables><variable type="" id="6|^2K*0cdi1H!-+VS)(*">1</variable></variables><block type="variables_get" id=";pM4/qqG77O=S#^c(,]J" x="80" y="10"><field name="VAR" id="6|^2K*0cdi1H!-+VS)(*" variabletype="">1</field></block></xml>',
+            'blocksJson' => '{"code":[{"block":"VAR_GET","var_name":"my_1","comment":"","comment_id":"1"}],"_var":{"my_1":0},"_sp_var":{}}',
             'CPlusCode' => [
                 'c++ code 1',
                 'c++ code 2',

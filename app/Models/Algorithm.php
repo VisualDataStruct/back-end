@@ -14,12 +14,12 @@ use App\Models\BaseModel as Model;
  * @property integer $id
  * @property integer $classification_id
  * @property string $name
- * @property array $pseudoCode
  * @property array $CPlusCode
- * @property array $jsCode
- * @property array $explain
+ * @property string $blocksJson
+ * @property string $blocksXml
  * @property array $problems
  * @property boolean $passed
+ * @property string $tagName
  * @property boolean $isPassed
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -48,13 +48,17 @@ class Algorithm extends Model
     {
         $this->attributes['name'] = clean($value, PurifierConfig::noAutoParagraph());
     }
-    public function setPseudoCodeAttribute($value)
+    public function setTagNameAttribute($value)
     {
-        $this->attributes['pseudoCode'] = json_encode($value);
+        $this->attributes['tagName'] = clean($value, PurifierConfig::noAutoParagraph());
     }
-    public function getPseudoCodeAttribute()
+    public function setBlocksJsonAttribute($value)
     {
-        return json_decode($this->attributes['pseudoCode']) ?? [$this->attributes['pseudoCode']];
+        $this->attributes['blocksJson'] = $value;
+    }
+    public function getBlocksJsonAttribute()
+    {
+        return $this->attributes['blocksJson'];
     }
     public function setCPlusCodeAttribute($value)
     {
@@ -64,21 +68,13 @@ class Algorithm extends Model
     {
         return json_decode($this->attributes['CPlusCode']) ?? [$this->attributes['CPlusCode']];
     }
-    public function setJsCodeAttribute($value)
+    public function setBlocksXmlAttribute($value)
     {
-        $this->attributes['jsCode'] = json_encode($value);
+        $this->attributes['blocksXml'] = $value;
     }
-    public function getJsCodeAttribute()
+    public function getBlocksXmlAttribute()
     {
-        return json_decode($this->attributes['jsCode']) ?? [$this->attributes['jsCode']];
-    }
-    public function setExplainAttribute($value)
-    {
-        $this->attributes['explain'] = json_encode($value);
-    }
-    public function getExplainAttribute()
-    {
-        return json_decode($this->attributes['explain']) ?? [$this->attributes['explain']];
+        return $this->attributes['blocksXml'];
     }
     public function setProblemsAttribute($value)
     {
@@ -148,6 +144,7 @@ class Algorithm extends Model
     {
         $data = [
             'id' => $this->id,
+            'tagName' => $this->tagName,
             'classification_id' => $this->classification_id,
             'name' => $this->name,
             'deleted_at' => $this->deleted_at->timestamp ?? null,
@@ -156,10 +153,9 @@ class Algorithm extends Model
             case 'list':
                 break;
             case 'detail':
-                $data['pseudoCode'] = $this->pseudoCode;
+                $data['blocksXml'] = $this->blocksXml;
                 $data['CPlusCode'] = $this->CPlusCode;
-                $data['jsCode'] = $this->jsCode;
-                $data['explain'] = $this->explain;
+                $data['blocksJson'] = $this->blocksJson;
                 $data['problem'] = $this->problems;
                 break;
         }

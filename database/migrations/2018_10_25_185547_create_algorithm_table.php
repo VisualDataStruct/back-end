@@ -16,11 +16,11 @@ class CreateAlgorithmTable extends Migration
         Schema::create('algorithm', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('classification_id')->default(0);
+            $table->string('tagName', 120);
             $table->string('name', 120)->unique();
-            $table->text('pseudoCode');
             $table->text('CPlusCode')->nullable();
-            $table->text('jsCode');
-            $table->text('explain');
+            $table->text('blocksJson');
+            $table->text('blocksXml');
             $table->text('problems');
             $table->boolean('passed')->default(0);
 
