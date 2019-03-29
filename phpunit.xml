@@ -23,6 +23,7 @@
             <exclude>
                 <directory prefix="Event">./app/Providers</directory>
                 <directory prefix="BaseModel">./app/Models</directory>
+                <directory>./app/Http/Controllers/File</directory>
             </exclude>
         </whitelist>
     </filter>

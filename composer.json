@@ -11,6 +11,7 @@
         "mews/purifier": "^2.1",
         "overtrue/laravel-lang": "^3.0",
         "pascaldevink/shortuuid": "^2.1",
+        "ralouphie/mimey": "^2.1",
         "ramsey/uuid": "^3.8",
         "vlucas/phpdotenv": "~2.2"
     },

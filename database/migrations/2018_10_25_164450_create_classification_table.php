@@ -18,6 +18,7 @@ class CreateClassificationTable extends Migration
             $table->string('name', 120)->unique();
             $table->string('description')->nullable();
             $table->integer('sum')->default(0);
+            $table->string('cover')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

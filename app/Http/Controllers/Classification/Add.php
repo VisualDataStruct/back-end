@@ -22,6 +22,7 @@ class Add extends Controller
         $this->validate($request, [
             'name' => 'required|string|unique:classification,name',
             'description' => 'nullable|string',
+            'cover' => 'nullable|string',
         ]);
         $classification = new Classification();
         $classification->name = $request->input('name');

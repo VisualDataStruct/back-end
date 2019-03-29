@@ -83,3 +83,10 @@ $router->group([
 
     $router->delete('/{algorithm_id}/problem', 'DeleteProblem@handle');
 });
+
+$router->group([
+    'prefix' => 'file',
+    'namespace' => 'File',
+], function () use ($router) {
+    $router->post('/upload', 'Upload@handle');
+});

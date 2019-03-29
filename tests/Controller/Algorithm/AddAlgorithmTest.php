@@ -19,6 +19,7 @@ class AddAlgorithmTest extends TestCase
                 'c++ code 2',
                 'c++ code 3',
             ],
+            'tagName' => 'List',
         ];
         $response = $this->actingAs($user)->call('POST',
             '/classification/' . $classification->id . '/algorithm', $new_algorithm);

@@ -16,6 +16,7 @@ use App\Models\BaseModel as Model;
  * @property string $name
  * @property string $description
  * @property integer $sum
+ * @property string $cover
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
@@ -65,6 +66,7 @@ class Classification extends Model
         ];
         switch ($type) {
             case 'list':
+                $data['cover'] = $this->cover;
                 break;
             case 'detail':
                 $data['algorithm'] = [];

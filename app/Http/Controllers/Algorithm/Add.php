@@ -30,12 +30,14 @@ class Add extends Controller
             'blocksXml' => 'required|string',
             'blocksJson' => 'required|string',
             'CPlusCode' => 'nullable|array',
+            'tagName' => 'required|string'
         ]);
         $algorithm = new Algorithm();
         $algorithm->name = $request->input('name');
         $algorithm->blocksXml = $request->input('blocksXml');
         $algorithm->blocksJson = $request->input('blocksJson');
         $algorithm->CPlusCode = $request->input('CPlusCode', []);
+        $algorithm->tagName = $request->input('tagName');
         $classification->algorithms()->save($algorithm);
         return response([
             'id' => $algorithm->id,
