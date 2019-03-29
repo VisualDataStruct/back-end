@@ -69,7 +69,7 @@ class Classification extends Model
                 $data['cover'] = $this->cover;
                 break;
             case 'detail':
-                $data['algorithm'] = [];
+                $data['algorithms'] = [];
                 if ($login) {
                     $algorithms = $this->algorithms()->withTrashed()->get();
                 } else {
