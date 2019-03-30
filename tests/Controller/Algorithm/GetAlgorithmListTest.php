@@ -21,6 +21,7 @@ class GetAlgorithmListTest extends TestCase
         $this->assertEquals($algorithmCount, count($response_algorithms));
         $this->assertEquals($algorithmCount, $response->original['sum']);
         foreach ($response_algorithms as $response_algorithm) {
+            $response_algorithm['initVar'] = json_encode($response_algorithm['initVar']);
             $this->seeInDatabase('algorithm', $response_algorithm);
         }
     }
@@ -40,6 +41,7 @@ class GetAlgorithmListTest extends TestCase
             if (isset($response_algorithm['deleted_at'])) {
                 unset($response_algorithm['deleted_at']);
             }
+            $response_algorithm['initVar'] = json_encode($response_algorithm['initVar']);
             $this->seeInDatabase('algorithm', $response_algorithm);
         }
     }

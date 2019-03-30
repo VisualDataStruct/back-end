@@ -30,7 +30,8 @@ class Add extends Controller
             'blocksXml' => 'required|string',
             'blocksJson' => 'required|string',
             'CPlusCode' => 'nullable|array',
-            'tagName' => 'required|string'
+            'tagName' => 'required|string',
+            'initVar' => 'nullable|array',
         ]);
         $algorithm = new Algorithm();
         $algorithm->name = $request->input('name');
@@ -38,6 +39,7 @@ class Add extends Controller
         $algorithm->blocksJson = $request->input('blocksJson');
         $algorithm->CPlusCode = $request->input('CPlusCode', []);
         $algorithm->tagName = $request->input('tagName');
+        $algorithm->initVar = $request->input('initVar', []);
         $classification->algorithms()->save($algorithm);
         return response([
             'id' => $algorithm->id,

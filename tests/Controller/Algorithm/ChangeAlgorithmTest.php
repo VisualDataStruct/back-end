@@ -15,6 +15,12 @@ class ChangeAlgorithmTest extends TestCase
             'classification_id' => $classification->id,
             'blocksXml' => '<xml xmlns="http://www.w3.org/1999/xhtml"><variables><variable type="" id="6|^2K*0cdi1H!-+VS)(*">1</variable></variables><block type="variables_get" id=";pM4/qqG77O=S#^c(,]J" x="80" y="10"><field name="VAR" id="6|^2K*0cdi1H!-+VS)(*" variabletype="">1</field></block></xml>',
             'blocksJson' => '{"code":[{"block":"VAR_GET","var_name":"my_1","comment":"","comment_id":"1"}],"_var":{"my_1":0},"_sp_var":{}}',
+            'initVar' => [
+                [
+                    'showName' => '初始链表',
+                    'varName' => 'list',
+                ],
+            ],
             'CPlusCode' => [
                 'c++ code ' . rand(0, 1000000),
                 'c++ code ' . rand(0, 1000000),
@@ -25,6 +31,7 @@ class ChangeAlgorithmTest extends TestCase
             '/classification/' . $classification->id . '/algorithm/' . $algorithm->id, $new_algorithm);
         $this->assertResponseOk();
         $new_algorithm['CPlusCode'] = json_encode($new_algorithm['CPlusCode']);
+        $new_algorithm['initVar'] = json_encode($new_algorithm['initVar']);
         $new_algorithm['id'] = $algorithm->id;
         $new_algorithm['passed'] = $algorithm->passed;
         $this->seeInDatabase('algorithm', $new_algorithm);

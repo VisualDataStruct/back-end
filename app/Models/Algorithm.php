@@ -21,6 +21,7 @@ use App\Models\BaseModel as Model;
  * @property boolean $passed
  * @property string $tagName
  * @property boolean $isPassed
+ * @property array $initVar
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
@@ -59,6 +60,14 @@ class Algorithm extends Model
     public function getBlocksJsonAttribute()
     {
         return $this->attributes['blocksJson'];
+    }
+    public function setInitVarAttribute($value)
+    {
+        $this->attributes['initVar'] = json_encode($value);
+    }
+    public function getInitVarAttribute()
+    {
+        return json_decode($this->attributes['initVar']) ?? [$this->attributes['initVar']];
     }
     public function setCPlusCodeAttribute($value)
     {
@@ -147,6 +156,7 @@ class Algorithm extends Model
             'tagName' => $this->tagName,
             'classification_id' => $this->classification_id,
             'name' => $this->name,
+            'initVar' => $this->initVar,
             'deleted_at' => $this->deleted_at->timestamp ?? null,
         ];
         switch ($type) {

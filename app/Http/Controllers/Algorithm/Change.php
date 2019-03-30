@@ -35,13 +35,15 @@ class Change extends Controller
             'blocksXml' => 'nullable|string',
             'blocksJson' => 'nullable|string',
             'CPlusCode' => 'nullable|array',
-            'tagName' => 'nullable|string'
+            'tagName' => 'nullable|string',
+            'initVar' => 'nullable|array',
         ]);
         $algorithm->name = $request->input('name', $algorithm->name);
         $algorithm->blocksJson = $request->input('blocksJson', $algorithm->blocksJson);
         $algorithm->tagName = $request->input('tagName', $algorithm->tagName);
         $algorithm->blocksXml= $request->input('blocksXml', $algorithm->blocksXml);
         $algorithm->CPlusCode = $request->input('CPlusCode', $algorithm->CPlusCode);
+        $algorithm->initVar = $request->input('initVar', $algorithm->initVar);
         $algorithm->save();
         return response('');
     }
