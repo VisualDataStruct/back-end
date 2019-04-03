@@ -157,6 +157,7 @@ class Algorithm extends Model
             'classification_id' => $this->classification_id,
             'name' => $this->name,
             'initVar' => $this->initVar,
+            'passed' => $this->passed,
             'deleted_at' => $this->deleted_at->timestamp ?? null,
         ];
         switch ($type) {
