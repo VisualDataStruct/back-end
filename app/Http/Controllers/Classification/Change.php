@@ -27,9 +27,11 @@ class Change extends Controller
         $this->validate($request, [
             'name' => 'nullable|string|unique:classification,name',
             'description' => 'nullable|string',
+            'cover' => 'nullable|string',
         ]);
         $classification->name = $request->input('name', $classification->name);
         $classification->description = $request->input('description', $classification->description);
+        $classification->cover = $request->input('cover', $classification->cover);
         $classification->save();
         return response('');
     }
