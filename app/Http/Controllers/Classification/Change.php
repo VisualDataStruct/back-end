@@ -25,10 +25,15 @@ class Change extends Controller
             return parent::error(404);
         }
         $this->validate($request, [
-            'name' => 'nullable|string|unique:classification,name',
+            'name' => 'nullable|string',
             'description' => 'nullable|string',
             'cover' => 'nullable|string',
         ]);
+        $sameNameCount = Classification::where('name', $request->input('name', $classification->name))
+            ->whereKeyNot($classification->id)->count();
+        if ($sameNameCount > 0) {
+            return parent::error(422, '名称 不能重复');
+        }
         $classification->name = $request->input('name', $classification->name);
         $classification->description = $request->input('description', $classification->description);
         $classification->cover = $request->input('cover', $classification->cover);

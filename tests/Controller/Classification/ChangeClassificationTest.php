@@ -32,8 +32,9 @@ class ChangeClassificationListTest extends TestCase
     {
         $user = \App\Models\User::first();
         $classification = \App\Models\Classification::first();
+        $secondClassification = \App\Models\Classification::offset(1)->first();
         $test_classification = [
-            'name' => $classification->name,
+            'name' => $secondClassification->name,
             'description' => 'test description',
         ];
         $response = $this->actingAs($user)->call('PUT', '/classification/' . $classification->id, $test_classification);
