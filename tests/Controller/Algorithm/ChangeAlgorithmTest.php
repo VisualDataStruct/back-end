@@ -61,15 +61,4 @@ class ChangeAlgorithmTest extends TestCase
             '/classification/' . $classification->id . '/algorithm/0', $algorithm->getData('detail'));
         $this->assertEquals(404, $response->status());
     }
-    public function testChangeAlgorithmFailWithNameExist()
-    {
-        $user = \App\Models\User::offset(1)->first();
-        $algorithm = \App\Models\Algorithm::withTrashed()->first();
-        $classification = $algorithm->classification()->withTrashed()->first();
-        $response = $this->actingAs($user)->call('PUT',
-            '/classification/' . $classification->id . '/algorithm/' . $algorithm->id, [
-                'name' => $algorithm->name,
-            ]);
-        $this->assertEquals(422, $response->status());
-    }
 }

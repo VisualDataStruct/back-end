@@ -31,7 +31,7 @@ class Change extends Controller
             return parent::error(404, 'Algorithm Not Found');
         }
         $this->validate($request, [
-            'name' => 'nullable|string|unique:algorithm,name',
+            'name' => 'nullable|string',
             'blocksXml' => 'nullable|string',
             'blocksJson' => 'nullable|string',
             'CPlusCode' => 'nullable|array',

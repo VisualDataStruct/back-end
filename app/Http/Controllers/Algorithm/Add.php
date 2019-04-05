@@ -26,7 +26,7 @@ class Add extends Controller
             return parent::error(404);
         }
         $this->validate($request, [
-            'name' => 'required|string|unique:algorithm,name',
+            'name' => 'required|string',
             'blocksXml' => 'required|string',
             'blocksJson' => 'required|string',
             'CPlusCode' => 'nullable|array',
