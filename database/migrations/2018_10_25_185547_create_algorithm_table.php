@@ -17,7 +17,7 @@ class CreateAlgorithmTable extends Migration
             $table->increments('id');
             $table->integer('classification_id')->default(0);
             $table->string('tagName', 120);
-            $table->string('name', 120)->unique();
+            $table->string('name', 120);
             $table->text('CPlusCode')->nullable();
             $table->text('blocksJson');
             $table->text('blocksXml');

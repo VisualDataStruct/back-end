@@ -27,11 +27,11 @@ class AddAlgorithmTest extends TestCase
             ],
             'tagName' => 'List',
         ];
+        $new_algorithm['initVar'] = json_encode($new_algorithm['initVar']);
         $response = $this->actingAs($user)->call('POST',
             '/classification/' . $classification->id . '/algorithm', $new_algorithm);
         $this->assertResponseOk();
         $new_algorithm['CPlusCode'] = json_encode($new_algorithm['CPlusCode']);
-        $new_algorithm['initVar'] = json_encode($new_algorithm['initVar']);
         $new_algorithm['id'] = $response->original['id'];
         $new_algorithm['passed'] = 0;
         $this->seeInDatabase('algorithm', $new_algorithm);
